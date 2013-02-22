@@ -1,13 +1,8 @@
-'''
-Created on May 8, 2009
-
-@author: ben
-'''
 import unittest
 import KataTwo
 
-class Test(unittest.TestCase):
 
+class Test(unittest.TestCase):
     def test_chopIterative(self):
         self.assertEqual(-1, KataTwo.chopIterative(3, []))
         self.assertEqual(-1, KataTwo.chopIterative(3, [1]))
@@ -53,7 +48,7 @@ class Test(unittest.TestCase):
         self.assertEqual(-1, KataTwo.chopRecursive(4, [1, 3, 5, 7]))
         self.assertEqual(-1, KataTwo.chopRecursive(6, [1, 3, 5, 7]))
         self.assertEqual(-1, KataTwo.chopRecursive(8, [1, 3, 5, 7]))
-        
+
     def test_chopSlice(self):
         self.assertEqual(-1, KataTwo.chopSliceRecursive(3, []))
         self.assertEqual(-1, KataTwo.chopSliceRecursive(3, [1]))
@@ -76,7 +71,7 @@ class Test(unittest.TestCase):
         self.assertEqual(-1, KataTwo.chopSliceRecursive(4, [1, 3, 5, 7]))
         self.assertEqual(-1, KataTwo.chopSliceRecursive(6, [1, 3, 5, 7]))
         self.assertEqual(-1, KataTwo.chopSliceRecursive(8, [1, 3, 5, 7]))
-        
+
     def test_chopSliceIterative(self):
         self.assertEqual(-1, KataTwo.chopSliceIterative(3, []))
         self.assertEqual(-1, KataTwo.chopSliceIterative(3, [1]))
@@ -99,7 +94,7 @@ class Test(unittest.TestCase):
         self.assertEqual(-1, KataTwo.chopSliceIterative(4, [1, 3, 5, 7]))
         self.assertEqual(-1, KataTwo.chopSliceIterative(6, [1, 3, 5, 7]))
         self.assertEqual(-1, KataTwo.chopSliceIterative(8, [1, 3, 5, 7]))
-        
+
     def test_chop(self):
         self.assertEqual(-1, KataTwo.chop(3, []))
         self.assertEqual(-1, KataTwo.chop(3, [1]))
@@ -123,6 +118,6 @@ class Test(unittest.TestCase):
         self.assertEqual(-1, KataTwo.chop(6, [1, 3, 5, 7]))
         self.assertEqual(-1, KataTwo.chop(8, [1, 3, 5, 7]))
 
+
 if __name__ == "__main__":
-    #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
