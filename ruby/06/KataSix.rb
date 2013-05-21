@@ -46,10 +46,10 @@ class AnagramDictionary
   end
 
   def get_longest_anagrams
-    @longest_canonical.map { |canonical| @underlying[canonical] }
+    @longest_canonical.map { |x| @underlying[x] }
   end
 
   def get_most_anagrams
-    @most_canonical.map { |canonical| @underlying[canonical] }
+    @most_canonical.map { |x| @underlying[x] }
   end
 end
