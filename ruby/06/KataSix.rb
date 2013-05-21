@@ -1,12 +1,10 @@
-require 'set'
-
 class AnagramDictionary
   def initialize(filename)
-    @underlying = Hash.new
+    @underlying = {}
     @longest_length = 0
-    @longest_canonical = Set.new
+    @longest_canonical = {}
     @most_length = 0
-    @most_canonical = Set.new
+    @most_canonical = {}
     File.foreach(filename) { |word| insert(word.strip) }
   end
 
@@ -16,8 +14,8 @@ class AnagramDictionary
 
   def insert(string)
     canonical = self.class.canonical_representation(string)
-    anagrams = @underlying[canonical] ||= Set.new
-    anagrams.add(string.downcase)
+    anagrams = @underlying[canonical] ||= {}
+    anagrams[string.downcase] = nil
     @underlying[canonical] = anagrams
     update_stats(canonical, anagrams)
   end
@@ -25,31 +23,31 @@ class AnagramDictionary
   def update_stats(canonical, anagrams)
     if anagrams.size > 1
       if canonical.size == @longest_length
-        @longest_canonical.add(canonical)
+        @longest_canonical[canonical] = nil
       elsif canonical.size > @longest_length
         @longest_length = canonical.size
-        @longest_canonical = Set.new(canonical)
+        @longest_canonical = {canonical => nil}
       end
       if anagrams.size == @most_length
-        @most_canonical.add(canonical)
+        @most_canonical[canonical] = nil
       elsif anagrams.size > @most_length
         @most_length = anagrams.size
-        @most_canonical = Set.new(canonical)
+        @most_canonical = {canonical => nil}
       end
     end
   end
 
-  def get_anagrams(string)
+  def anagrams(string)
     canonical = self.class.canonical_representation(string)
-    anagrams = @underlying[canonical] ||= Set.new
-    anagrams.delete(string.downcase)
+    anagrams = @underlying[canonical] ||= {}
+    anagrams.reject { |k, v| k == string.downcase }.keys
   end
 
-  def get_longest_anagrams
-    @longest_canonical.map { |x| @underlying[x] }
+  def longest_anagrams
+    @longest_canonical.keys.map { |x| @underlying[x].keys }
   end
 
-  def get_most_anagrams
-    @most_canonical.map { |x| @underlying[x] }
+  def most_anagrams
+    @most_canonical.keys.map { |x| @underlying[x].keys }
   end
 end
